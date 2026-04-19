@@ -133,6 +133,16 @@ function initRevealAnimations() {
   elements.forEach((el) => observer.observe(el));
 }
 
+function initOutfitGalleryStagger() {
+  const grids = document.querySelectorAll("[data-outfit-gallery-grid]");
+  grids.forEach((grid) => {
+    const cards = grid.querySelectorAll(".outfit-gallery-card.reveal");
+    cards.forEach((card, index) => {
+      card.style.setProperty("--stagger", `${index * 80}ms`);
+    });
+  });
+}
+
 function initMusic() {
   const source = bgMusic.querySelector("source");
   if (BACKGROUND_MUSIC_SRC) {
@@ -191,6 +201,7 @@ function initSurveyForm() {
 
 initDateAndCountdown();
 initCalendarButton();
+initOutfitGalleryStagger();
 initRevealAnimations();
 initMusic();
 initSurveyForm();
