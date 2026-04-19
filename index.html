@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Данил & Екатерина — Свадебное приглашение</title>
+  <meta name="description" content="Интерактивное приглашение на свадьбу Данила и Екатерины" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-bg"></div>
+
+  <header class="hero section" id="home">
+    <nav class="top-nav container">
+      <a href="#home" class="brand">D&E</a>
+      <div class="nav-links">
+        <a href="#about">О событии</a>
+        <a href="#timeline">Тайминг</a>
+        <a href="#dress-code">Dress Code</a>
+        <a href="#survey">Опрос</a>
+      </div>
+    </nav>
+
+    <div class="hero-content container reveal">
+      <div class="hero-calendar glass-card" aria-label="Календарь с датой свадьбы">
+        <p class="month-title">ИЮНЬ</p>
+
+        <div class="calendar-grid calendar-days">
+          <span class="calendar-cell"><em>Пн</em><strong>22</strong></span>
+          <span class="calendar-cell"><em>Вт</em><strong>23</strong></span>
+          <span class="calendar-cell"><em>Ср</em><strong>24</strong></span>
+          <span class="calendar-cell"><em>Чт</em><strong>25</strong></span>
+
+          <span class="day-heart" aria-label="26 июня — день свадьбы">
+            <svg viewBox="0 0 120 110" aria-hidden="true" focusable="false">
+              <path d="M60 102C44 83 14 58 14 34C14 20 25 10 38 10C49 10 57 16 60 24C63 16 71 10 82 10C95 10 106 20 106 34C106 58 76 83 60 102Z"></path>
+            </svg>
+            <em>Пт</em>
+            <strong>26</strong>
+          </span>
+
+          <span class="calendar-cell"><em>Сб</em><strong>27</strong></span>
+          <span class="calendar-cell"><em>Вс</em><strong>28</strong></span>
+        </div>
+      </div>
+
+      <p class="overline">coastal elegant wedding</p>
+      <h1>Данил &amp; Екатерина</h1>
+      <p class="hero-subtitle">Приглашаем вас на нашу свадьбу</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" id="calendarBtn" href="#">Добавить в календарь</a>
+        <button class="btn btn-ghost" id="musicToggle" type="button" aria-pressed="false">Включить музыку</button>
+      </div>
+      <p class="hint">Музыка отключена по умолчанию</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="about">
+      <div class="container card reveal">
+        <h2>О событии</h2>
+        <p>
+          Мы начинаем новую главу нашей истории и будем счастливы разделить этот день с самыми близкими.
+          Ваше присутствие, улыбки и тёплые слова сделают праздник по-настоящему особенным.
+          Спасибо, что вы рядом с нами в этот важный момент.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="timeline">
+      <div class="container">
+        <h2 class="reveal">Таймлайн мероприятия</h2>
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <h3>🕓 16:45 — Регистрация</h3>
+              <p><span class="icon">🕍</span>Митинский дворец</p>
+              <p><span class="icon">📍</span>Адрес: Москва, [точный адрес]</p>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <h3>🕕 18:00 — Празднование</h3>
+              <p><span class="icon">🏛️</span>Особняк «21 культ»</p>
+              <p><span class="icon">📍</span>Адрес: [точный адрес]</p>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <h3>🕖 19:00 — Продолжение вечера</h3>
+              <p><span class="icon">🍽️</span>Банкет и праздничная программа</p>
+              <p><span class="icon">✨</span>Тёплая атмосфера, танцы и поздравления</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dress-code">
+      <div class="container">
+        <div class="card reveal">
+          <h2>Dress Code</h2>
+          <p>
+            Стиль: морской / elegant / semi-formal. Мы будем рады видеть образы в оттенках синего,
+            белого, бежевого и нежных пастельных тонах.
+          </p>
+          <div class="color-pills">
+            <span>Синий</span><span>Белый</span><span>Бежевый</span><span>Пастель</span>
+          </div>
+        </div>
+
+        <div class="outfit-grid">
+          <article class="outfit-card reveal">
+            <div class="outfit-visual male"></div>
+            <h3>Для него</h3>
+            <p>Пиджак в морских оттенках, светлая рубашка, классическая обувь.</p>
+          </article>
+
+          <article class="outfit-card reveal">
+            <div class="outfit-visual female"></div>
+            <h3>Для неё</h3>
+            <p>Лёгкое платье в пастельной гамме, жемчужные акценты, элегантные аксессуары.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="extras">
+      <div class="container extras-grid">
+        <article class="card reveal">
+          <h2>До встречи осталось</h2>
+          <p class="countdown" id="countdown">-- дн -- ч -- мин</p>
+          <p class="small">До 26 июня 2026, 16:00</p>
+        </article>
+
+        <article class="card reveal">
+          <h2>Локации на карте</h2>
+          <div class="map-wrap">
+            <iframe
+              title="Яндекс.Карты — Митинский дворец"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://yandex.ru/map-widget/v1/?z=16&text=%D0%9C%D0%B8%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D0%B4%D0%B2%D0%BE%D1%80%D0%B5%D1%86%20%D0%B1%D1%80%D0%B0%D0%BA%D0%BE%D1%81%D0%BE%D1%87%D0%B5%D1%82%D0%B0%D0%BD%D0%B8%D1%8F%2C%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0">
+            </iframe>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="survey">
+      <div class="container card reveal">
+        <h2>Опрос</h2>
+        <p>Пожалуйста, отметьте ваши предпочтения, чтобы мы сделали вечер максимально комфортным.</p>
+
+        <form id="rsvpForm" novalidate>
+          <fieldset>
+            <legend>Предпочтения в еде</legend>
+            <div class="chips" data-group="food">
+              <label><input type="radio" name="food" value="мясо" /> <span>Мясо</span></label>
+              <label><input type="radio" name="food" value="рыба" /> <span>Рыба</span></label>
+              <label><input type="radio" name="food" value="вегетарианское" /> <span>Вегетарианское</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Алкоголь</legend>
+            <div class="chips" data-group="drink">
+              <label><input type="radio" name="drink" value="вино" /> <span>Вино</span></label>
+              <label><input type="radio" name="drink" value="шампанское" /> <span>Шампанское</span></label>
+              <label><input type="radio" name="drink" value="крепкий алкоголь" /> <span>Крепкий алкоголь</span></label>
+              <label><input type="radio" name="drink" value="не употребляю" /> <span>Не употребляю</span></label>
+            </div>
+          </fieldset>
+
+          <p class="form-error" id="formError" aria-live="polite"></p>
+          <button class="btn btn-primary" type="submit">Отправить</button>
+          <p class="small" id="formSuccess" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <p>С любовью, Данил и Екатерина</p>
+  </footer>
+
+  <audio id="bgMusic" loop preload="none" muted>
+    <source src="" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
