@@ -5,6 +5,7 @@ const WEDDING_DATE_ISO = "2026-06-26T16:00:00+03:00";
 
 // При наличии mp3 можно добавить путь, например "./music.mp3"
 const BACKGROUND_MUSIC_SRC = "";
+const OUTFIT_MANIFEST_PATH = "./assets/outfits/outfits-manifest.json";
 
 // ====== DOM ======
 const weddingDateText = document.getElementById("weddingDateText");
@@ -133,13 +134,152 @@ function initRevealAnimations() {
   elements.forEach((el) => observer.observe(el));
 }
 
-function initOutfitGalleryStagger() {
-  const grids = document.querySelectorAll("[data-outfit-gallery-grid]");
-  grids.forEach((grid) => {
-    const cards = grid.querySelectorAll(".outfit-gallery-card.reveal");
-    cards.forEach((card, index) => {
-      card.style.setProperty("--stagger", `${index * 80}ms`);
+function normalizePath(path) {
+  if (typeof path !== "string") return "";
+  if (path.startsWith("./")) return path;
+  if (path.startsWith("assets/")) return `./${path}`;
+  if (path.startsWith("/assets/")) return `.${path}`;
+  return path;
+}
+
+function groupOutfitImages(paths = []) {
+  const groupsMap = new Map();
+
+  const sorted = [...paths]
+    .map(normalizePath)
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b, "ru"));
+
+  sorted.forEach((path) => {
+    const fileName = path.split("/").pop() || "";
+    const pairMatch = fileName.match(/^(.*?_sample_\d+)_([12])\.(jpe?g|png|webp)$/i);
+
+    if (pairMatch) {
+      const key = pairMatch[1];
+      const side = Number(pairMatch[2]);
+      if (!groupsMap.has(key)) groupsMap.set(key, { type: "pair", images: [] });
+      groupsMap.get(key).images[side - 1] = path;
+      return;
+    }
+
+    groupsMap.set(path, { type: "single", images: [path] });
+  });
+
+  return [...groupsMap.values()]
+    .map((group) => ({ ...group, images: group.images.filter(Boolean) }))
+    .filter((group) => group.images.length > 0);
+}
+
+function captionByCategory(category) {
+  if (category === "man") return "Образ для него";
+  if (category === "women") return "Образ для неё";
+  return "Образ для пары";
+}
+
+function altByCategory(category, isPair, index) {
+  const base = category === "man"
+    ? "Мужской образ"
+    : category === "women"
+      ? "Женский образ"
+      : "Парный образ";
+
+  return isPair ? `${base} в coastal elegant стиле, ракурс ${index + 1}` : `${base} в coastal elegant стиле`;
+}
+
+function createOutfitCard(group, category, index) {
+  const article = document.createElement("article");
+  article.className = `outfit-card-item reveal${group.type === "pair" ? " outfit-card-item--pair" : ""}`;
+  article.style.setProperty("--stagger", `${index * 70}ms`);
+
+  const media = document.createElement("div");
+  media.className = `outfit-card-media${group.type === "pair" ? " outfit-card-media--pair" : ""}`;
+
+  group.images.forEach((src, i) => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.loading = "lazy";
+    img.alt = altByCategory(category, group.type === "pair", i);
+    media.appendChild(img);
+  });
+
+  const caption = document.createElement("p");
+  caption.className = "outfit-card-caption";
+  caption.textContent = captionByCategory(category);
+
+  article.append(media, caption);
+  return article;
+}
+
+function initTrackDragScroll(track) {
+  let isDown = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+
+  track.addEventListener("pointerdown", (e) => {
+    isDown = true;
+    startX = e.clientX;
+    startScrollLeft = track.scrollLeft;
+    track.setPointerCapture(e.pointerId);
+  });
+
+  track.addEventListener("pointermove", (e) => {
+    if (!isDown) return;
+    track.scrollLeft = startScrollLeft - (e.clientX - startX);
+  });
+
+  const stop = () => {
+    isDown = false;
+  };
+
+  track.addEventListener("pointerup", stop);
+  track.addEventListener("pointercancel", stop);
+  track.addEventListener("pointerleave", stop);
+}
+
+function initCarouselControls(section) {
+  const track = section.querySelector("[data-outfit-carousel-track]");
+  const prevBtn = section.querySelector("[data-outfit-carousel-prev]");
+  const nextBtn = section.querySelector("[data-outfit-carousel-next]");
+  if (!track || !prevBtn || !nextBtn) return;
+
+  const getStep = () => {
+    const firstCard = track.querySelector(".outfit-card-item");
+    const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 280;
+    return Math.max(cardWidth + 16, Math.floor(track.clientWidth * 0.86));
+  };
+
+  prevBtn.addEventListener("click", () => track.scrollBy({ left: -getStep(), behavior: "smooth" }));
+  nextBtn.addEventListener("click", () => track.scrollBy({ left: getStep(), behavior: "smooth" }));
+  initTrackDragScroll(track);
+}
+
+
+async function initOutfitCarousels() {
+  const sections = document.querySelectorAll("[data-outfit-carousel-section]");
+  if (!sections.length) return;
+
+  let manifest;
+  try {
+    const res = await fetch(OUTFIT_MANIFEST_PATH, { cache: "no-store" });
+    if (!res.ok) throw new Error("Manifest load failed");
+    manifest = await res.json();
+  } catch {
+    return;
+  }
+
+  sections.forEach((section) => {
+    const category = section.getAttribute("data-outfit-carousel-section");
+    const track = section.querySelector("[data-outfit-carousel-track]");
+    if (!category || !track) return;
+
+    const groups = groupOutfitImages(Array.isArray(manifest?.[category]) ? manifest[category] : []);
+    track.innerHTML = "";
+    groups.forEach((group, index) => {
+      const card = createOutfitCard(group, category, index);
+      track.appendChild(card);
     });
+
+    initCarouselControls(section);
   });
 }
 
@@ -199,9 +339,11 @@ function initSurveyForm() {
   });
 }
 
-initDateAndCountdown();
-initCalendarButton();
-initOutfitGalleryStagger();
-initRevealAnimations();
-initMusic();
-initSurveyForm();
+(async function initApp() {
+  initDateAndCountdown();
+  initCalendarButton();
+  await initOutfitCarousels();
+  initRevealAnimations();
+  initMusic();
+  initSurveyForm();
+})();

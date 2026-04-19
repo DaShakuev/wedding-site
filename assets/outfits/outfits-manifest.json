@@ -1,0 +1,32 @@
+{
+  "man": [
+    "./assets/outfits/man/man_sample_1_1.jpeg",
+    "./assets/outfits/man/man_sample_1_2.jpeg",
+    "./assets/outfits/man/man_sample_2.jpeg",
+    "./assets/outfits/man/man_sample_3.jpeg",
+    "./assets/outfits/man/man_sample_4.jpeg",
+    "./assets/outfits/man/man_sample_5.jpeg",
+    "./assets/outfits/man/man_sample_6_1.jpeg",
+    "./assets/outfits/man/man_sample_6_2.jpeg"
+  ],
+  "women": [
+    "./assets/outfits/women/woman_sample_1_1.jpeg",
+    "./assets/outfits/women/woman_sample_1_2.jpeg",
+    "./assets/outfits/women/woman_sample_2_1.jpeg",
+    "./assets/outfits/women/woman_sample_2_2.jpeg",
+    "./assets/outfits/women/woman_sample_3_1.jpeg",
+    "./assets/outfits/women/woman_sample_3_2.jpeg",
+    "./assets/outfits/women/woman_sample_4.jpeg",
+    "./assets/outfits/women/woman_sample_5.jpeg",
+    "./assets/outfits/women/woman_sample_6.jpeg",
+    "./assets/outfits/women/woman_sample_7.jpeg",
+    "./assets/outfits/women/woman_sample_8.jpeg",
+    "./assets/outfits/women/woman_sample_9.jpeg",
+    "./assets/outfits/women/woman_sample_10.jpeg"
+  ],
+  "couple": [
+    "./assets/outfits/couple/couple_sample_1.jpeg",
+    "./assets/outfits/couple/couple_sample_2_1.jpeg",
+    "./assets/outfits/couple/couple_sample_2_2.jpeg"
+  ]
+}
