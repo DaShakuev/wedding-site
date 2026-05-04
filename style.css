@@ -131,6 +131,7 @@ p {
   min-height: 90vh;
   position: relative;
   overflow: hidden;
+  padding-bottom: 1.2rem;
 }
 
 .hero::before,
@@ -172,6 +173,7 @@ p {
   min-height: calc(90vh - 64px);
   text-align: center;
   position: relative;
+  z-index: 2;
   gap: 0.35rem;
 }
 
@@ -327,10 +329,11 @@ p {
 }
 
 .memory-video {
-  --memory-w: clamp(220px, 42vw, 360px);
+  --memory-w: clamp(200px, 30vw, 300px);
   position: relative;
   width: var(--memory-w);
   margin: 0.9rem auto 0;
+  z-index: 3;
   opacity: 0;
   transform: scale(0.95) translateY(6px);
   pointer-events: none;
