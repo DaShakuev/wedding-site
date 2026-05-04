@@ -13,9 +13,6 @@ const countdownEl = document.getElementById("countdown");
 const calendarBtn = document.getElementById("calendarBtn");
 const musicToggle = document.getElementById("musicToggle");
 const bgMusic = document.getElementById("bgMusic");
-const form = document.getElementById("rsvpForm");
-const formError = document.getElementById("formError");
-const formSuccess = document.getElementById("formSuccess");
 
 function formatDateRu(date) {
   return new Intl.DateTimeFormat("ru-RU", {
@@ -313,37 +310,10 @@ function initMusic() {
   });
 }
 
-function initSurveyForm() {
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    formError.textContent = "";
-    formSuccess.textContent = "";
-
-    const data = new FormData(form);
-    const food = data.get("food");
-    const drink = data.get("drink");
-
-    if (!food || !drink) {
-      formError.textContent = "Пожалуйста, выберите вариант еды и алкоголя.";
-      return;
-    }
-
-    const payload = { food, drink, submittedAt: new Date().toISOString() };
-
-    // Заглушка отправки: замените на fetch('/api/rsvp', { method: 'POST', ... })
-    await new Promise((resolve) => setTimeout(resolve, 550));
-    console.log("RSVP payload:", payload);
-
-    formSuccess.textContent = "Спасибо! Ваши предпочтения сохранены 💙";
-    form.reset();
-  });
-}
-
 (async function initApp() {
   initDateAndCountdown();
   initCalendarButton();
   await initOutfitCarousels();
   initRevealAnimations();
   initMusic();
-  initSurveyForm();
 })();

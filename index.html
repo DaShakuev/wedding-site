@@ -199,32 +199,13 @@
     <section class="section" id="survey">
       <div class="container card reveal">
         <h2>Опрос</h2>
-        <p>Пожалуйста, отметьте ваши предпочтения, чтобы мы сделали вечер максимально комфортным.</p>
+        <p>Пожалуйста, заполните форму — это поможет нам подготовить праздник максимально комфортно для всех гостей.</p>
 
-        <form id="rsvpForm" novalidate>
-          <fieldset>
-            <legend>Предпочтения в еде</legend>
-            <div class="chips" data-group="food">
-              <label><input type="radio" name="food" value="мясо" /> <span>Мясо</span></label>
-              <label><input type="radio" name="food" value="рыба" /> <span>Рыба</span></label>
-              <label><input type="radio" name="food" value="вегетарианское" /> <span>Вегетарианское</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>Алкоголь</legend>
-            <div class="chips" data-group="drink">
-              <label><input type="radio" name="drink" value="вино" /> <span>Вино</span></label>
-              <label><input type="radio" name="drink" value="шампанское" /> <span>Шампанское</span></label>
-              <label><input type="radio" name="drink" value="крепкий алкоголь" /> <span>Крепкий алкоголь</span></label>
-              <label><input type="radio" name="drink" value="не употребляю" /> <span>Не употребляю</span></label>
-            </div>
-          </fieldset>
-
-          <p class="form-error" id="formError" aria-live="polite"></p>
-          <button class="btn btn-primary" type="submit">Отправить</button>
-          <p class="small" id="formSuccess" aria-live="polite"></p>
-        </form>
+        <script src="https://forms.yandex.ru/_static/embed.js"></script>
+        <div class="ya-form-wrap">
+          <iframe src="https://forms.yandex.ru/u/69f8f4ff6d2d73a43032188a?iframe=1" frameborder="0" name="ya-form-69f8f4ff6d2d73a43032188a" width="650" title="Опрос гостей"></iframe>
+        </div>
+        <p class="small">Если форма не отображается, <a href="https://forms.yandex.ru/u/69f8f4ff6d2d73a43032188a" target="_blank" rel="noopener noreferrer">откройте её в новой вкладке</a>.</p>
       </div>
     </section>
   </main>
