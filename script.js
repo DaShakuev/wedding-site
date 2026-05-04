@@ -3,8 +3,8 @@
 // const WEDDING_DATE_ISO = "2026-08-15T16:45:00+03:00";
 const WEDDING_DATE_ISO = "2026-06-26T16:00:00+03:00";
 
-// При наличии mp3 можно добавить путь, например "./music.mp3"
-const BACKGROUND_MUSIC_SRC = "";
+// Фоновая музыка
+const BACKGROUND_MUSIC_SRC = "./dog_sea.mp3";
 const OUTFIT_MANIFEST_PATH = "./assets/outfits/outfits-manifest.json";
 
 // ====== DOM ======
@@ -76,6 +76,8 @@ function toICSDate(date) {
 }
 
 function initCalendarButton() {
+  if (!calendarBtn) return;
+
   calendarBtn.addEventListener("click", (e) => {
     const weddingDate = getWeddingDate();
     if (!weddingDate) {
