@@ -13,6 +13,34 @@ const countdownEl = document.getElementById("countdown");
 const calendarBtn = document.getElementById("calendarBtn");
 const musicToggle = document.getElementById("musicToggle");
 const bgMusic = document.getElementById("bgMusic");
+const memoryVideo = document.getElementById("memoryVideo");
+const memoryVideoMedia = document.getElementById("memoryVideoMedia");
+
+let isMemoryVideoInitialized = false;
+
+async function showMemoryVideo() {
+  if (!memoryVideo || !memoryVideoMedia) return;
+
+  if (!isMemoryVideoInitialized) {
+    const source = memoryVideoMedia.querySelector("source[data-src]");
+    const lazySrc = source?.getAttribute("data-src");
+    if (source && lazySrc) {
+      source.src = lazySrc;
+      source.removeAttribute("data-src");
+      memoryVideoMedia.load();
+    }
+    isMemoryVideoInitialized = true;
+  }
+
+  memoryVideo.classList.add("is-visible");
+  memoryVideo.setAttribute("aria-hidden", "false");
+
+  try {
+    await memoryVideoMedia.play();
+  } catch {
+    // Видеоплеер может быть заблокирован политикой браузера
+  }
+}
 
 function formatDateRu(date) {
   return new Intl.DateTimeFormat("ru-RU", {
@@ -299,6 +327,7 @@ function initMusic() {
       if (bgMusic.paused) {
         bgMusic.muted = false;
         await bgMusic.play();
+        await showMemoryVideo();
         musicToggle.textContent = "Выключить музыку";
         musicToggle.setAttribute("aria-pressed", "true");
       } else {
