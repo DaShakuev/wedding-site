@@ -786,12 +786,17 @@ legend {
 }
 
 .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.js .reveal {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.reveal.in-view {
+html.js .reveal.in-view {
   opacity: 1;
   transform: translateY(0);
 }

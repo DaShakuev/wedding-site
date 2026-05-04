@@ -1,4 +1,6 @@
 // ====== CONFIG ======
+document.documentElement.classList.add("js");
+
 // Укажите точную дату свадьбы в формате ISO, например:
 // const WEDDING_DATE_ISO = "2026-08-15T16:45:00+03:00";
 const WEDDING_DATE_ISO = "2026-06-26T16:00:00+03:00";
