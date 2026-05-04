@@ -161,6 +161,12 @@ function initRevealAnimations() {
   elements.forEach((el) => observer.observe(el));
 }
 
+function forceShowRevealContent() {
+  document.querySelectorAll(".reveal").forEach((el) => {
+    el.classList.add("in-view");
+  });
+}
+
 function normalizePath(path) {
   if (typeof path !== "string") return "";
   if (path.startsWith("./")) return path;
@@ -311,6 +317,8 @@ async function initOutfitCarousels() {
 }
 
 function initMusic() {
+  if (!musicToggle || !bgMusic) return;
+
   const source = bgMusic.querySelector("source");
   if (BACKGROUND_MUSIC_SRC) {
     source.src = BACKGROUND_MUSIC_SRC;
@@ -342,9 +350,14 @@ function initMusic() {
 }
 
 (async function initApp() {
-  initDateAndCountdown();
-  initCalendarButton();
-  await initOutfitCarousels();
-  initRevealAnimations();
-  initMusic();
+  try {
+    initDateAndCountdown();
+    initCalendarButton();
+    await initOutfitCarousels();
+    initRevealAnimations();
+    initMusic();
+  } catch (error) {
+    console.error("Wedding page init error:", error);
+    forceShowRevealContent();
+  }
 })();
